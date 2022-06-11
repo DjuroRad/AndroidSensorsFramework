@@ -1,0 +1,367 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Response</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><link href="../../../styles/prism.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script><script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>  </head>
+  <body>
+    <div class="navigation-wrapper" id="navigation-wrapper">
+      <div id="leftToggler"><span class="icon-toggler"></span></div>
+      <div class="library-name"><a href="../../../index.html">app</a></div>
+      <div></div>
+      <div class="pull-right d-flex"><button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+      </div>
+    </div>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div class="main-content" id="content" pageIds="app::com.example.externalsensorframework.sensor_framework.communication_protocol.response/Response///PointingToDeclaration//492899073">
+          <div class="breadcrumbs"><a href="../../../index.html">app</a>/<a href="../index.html">com.example.externalsensorframework.sensor_framework.communication_protocol.response</a>/<a href="index.html">Response</a></div>
+          <div class="cover ">
+            <h1 class="cover"><span><span>Response</span></span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">enum </span><a href="index.html">Response</a><span class="token punctuation">(</span>value<span class="token operator">: </span><span data-unresolved-link="kotlin/Byte///PointingToDeclaration/">Byte</span><span class="token punctuation">)</span> : <span data-unresolved-link="kotlin/Enum///PointingToDeclaration/">Enum</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">Response</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Response form has 2 types: Response field -> | Response | Body field -> | BODY | | Response | BODY | 1        4</p><p class="paragraph">| Response | BODY | 1        n          -> n represents variables length of body, this is crucial when writing sensor's data into client's input stream</p><p class="paragraph">each response contains of 5 bytes 1^st byte represents response type following 4 bytes represent additional response data. Some responses will use this space, some will leave it empty. For example: Response type: CONFIGURE_Y CONFIGURE_Y.byteValue, -, -, -, -  -> informs that it can get number of bytes requested in CONFIGURE request. Response type: IS_CONNECTED_Y IS_CONNECTED_Y.byteValue, -, -, -, -  Response type: START_READING_Y  START_READING_Y.byteValue, 0, 0, 0, 0b0000_0100  -> informs that reading started and that each time it will send 4 bytes Response type: READING  READING.byteValue, x, x, x, x, ... , n^th 'x' byte  etc.</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Entries">Entries</button><button class="section-tab" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Inherited properties">Inherited properties</button></div>
+            <div class="tabs-section-body">
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="-845344177%2FConstructors%2F492899073" anchor-label="Response" id="-845344177%2FConstructors%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-response.html"><span><span>Response</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-845344177%2FConstructors%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">private </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="-response.html"><span class="token function">Response</span></a><span class="token punctuation">(</span>value<span class="token operator">: </span><span data-unresolved-link="kotlin/Byte///PointingToDeclaration/">Byte</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="tabbedcontent">Entries</h2>
+              <div class="table" data-togglable="Entries"><a data-name="-1133843094%2FClasslikes%2F492899073" anchor-label="CONNECT_Y" id="-1133843094%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-c-o-n-n-e-c-t_-y/index.html">CONNECT_Y</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1133843094%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-c-o-n-n-e-c-t_-y/index.html">CONNECT_Y</a><span class="token punctuation">(</span>200.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | CONNECT | - - - - | Response = | CONNECT_Y | n sensors | (sensorPackage - id + sensor type)</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1523261778%2FClasslikes%2F492899073" anchor-label="CONFIGURE_Y" id="-1523261778%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-c-o-n-f-i-g-u-r-e_-y/index.html">CONFIGURE_Y</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1523261778%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-c-o-n-f-i-g-u-r-e_-y/index.html">CONFIGURE_Y</a><span class="token punctuation">(</span>202.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | CONFIGURE | sensor_id | sample rate ( 4 bytes ) Response = | CONNECT_Y | - - - - |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-283160085%2FClasslikes%2F492899073" anchor-label="CONNECT_SENSOR_Y" id="-283160085%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-c-o-n-n-e-c-t_-s-e-n-s-o-r_-y/index.html">CONNECT_SENSOR_Y</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-283160085%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-c-o-n-n-e-c-t_-s-e-n-s-o-r_-y/index.html">CONNECT_SENSOR_Y</a><span class="token punctuation">(</span>1.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | CONNECT_SENSOR | SENSOR_TYPE(1 byte) - - - | this response is given if Sensor_type is registered / present on the board. This information is explicitly specified beforehand Response = | CONNECT_SENSOR_Y | - - - - |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="476774982%2FClasslikes%2F492899073" anchor-label="IS_CONNECTED_Y" id="476774982%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-i-s_-c-o-n-n-e-c-t-e-d_-y/index.html">IS_CONNECTED_Y</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="476774982%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-i-s_-c-o-n-n-e-c-t-e-d_-y/index.html">IS_CONNECTED_Y</a><span class="token punctuation">(</span>3.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | IS_CONNECTED | response given if remote mobile device has previously connected and informs about which sensor connected Response = | IS_CONNECTED_N | SENSOR_TYPE(1 byte) - - - |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="580556359%2FClasslikes%2F492899073" anchor-label="START_READ_Y" id="580556359%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-s-t-a-r-t_-r-e-a-d_-y/index.html">START_READ_Y</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="580556359%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-s-t-a-r-t_-r-e-a-d_-y/index.html">START_READ_Y</a><span class="token punctuation">(</span>5.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | START_READ | - - - - | This response is given if data is available for reading. Checking IS_CONNECTED beforehand with desired sensor type advised. Otherwise, might be returning data of some other sensor Response = | START_READ_Y | nBytes |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-215127647%2FClasslikes%2F492899073" anchor-label="STOP_READ_Y" id="-215127647%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-s-t-o-p_-r-e-a-d_-y/index.html">STOP_READ_Y</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-215127647%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-s-t-o-p_-r-e-a-d_-y/index.html">STOP_READ_Y</a><span class="token punctuation">(</span>7.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | STOP_READ | response informs that reading paused ( ideally, this will almost always execute ) Response = | STOP_READ_Y | - - - - |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1058113879%2FClasslikes%2F492899073" anchor-label="DISCONNECT_SENSOR_Y" id="1058113879%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-d-i-s-c-o-n-n-e-c-t_-s-e-n-s-o-r_-y/index.html">DISCONNECT_SENSOR_Y</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1058113879%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-d-i-s-c-o-n-n-e-c-t_-s-e-n-s-o-r_-y/index.html">DISCONNECT_SENSOR_Y</a><span class="token punctuation">(</span>9.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | DISCONNECT_SENSOR | if sensor exists and is connected, response is positive, otherwise negative Response = | DISCONNECT_SENSOR_Y | sensor id |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1475060971%2FClasslikes%2F492899073" anchor-label="CONNECT_N" id="-1475060971%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-c-o-n-n-e-c-t_-n/index.html">CONNECT_N</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1475060971%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-c-o-n-n-e-c-t_-n/index.html">CONNECT_N</a><span class="token punctuation">(</span>201.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | CONNECT | - - - - | Response = | CONNECT_N | - - - - | problem with establishing communication</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1864479655%2FClasslikes%2F492899073" anchor-label="CONFIGURE_N" id="-1864479655%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-c-o-n-f-i-g-u-r-e_-n/index.html">CONFIGURE_N</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1864479655%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-c-o-n-f-i-g-u-r-e_-n/index.html">CONFIGURE_N</a><span class="token punctuation">(</span>203.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | CONFIGURE | sensor_id | sample rate ( 4 bytes ) Response = | CONNECT_N | sensor_id</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-624377962%2FClasslikes%2F492899073" anchor-label="CONNECT_SENSOR_N" id="-624377962%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-c-o-n-n-e-c-t_-s-e-n-s-o-r_-n/index.html">CONNECT_SENSOR_N</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-624377962%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-c-o-n-n-e-c-t_-s-e-n-s-o-r_-n/index.html">CONNECT_SENSOR_N</a><span class="token punctuation">(</span>0.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | CONNECT_SENSOR | SENSOR_TYPE(1 byte) | this response is given if Sensor_type is not registered / present on the board. This information is explicitly specified beforehand by driver developer Response = | CONNECT_SENSOR_n | - - - - |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="135557105%2FClasslikes%2F492899073" anchor-label="IS_CONNECTED_N" id="135557105%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-i-s_-c-o-n-n-e-c-t-e-d_-n/index.html">IS_CONNECTED_N</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="135557105%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-i-s_-c-o-n-n-e-c-t-e-d_-n/index.html">IS_CONNECTED_N</a><span class="token punctuation">(</span>2.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | IS_CONNECTED | response given if remote mobile device hasn't previously connected Response = | IS_CONNECTED_N | - - - - |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="239338482%2FClasslikes%2F492899073" anchor-label="START_READ_N" id="239338482%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-s-t-a-r-t_-r-e-a-d_-n/index.html">START_READ_N</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="239338482%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-s-t-a-r-t_-r-e-a-d_-n/index.html">START_READ_N</a><span class="token punctuation">(</span>4.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | START_READ | - - - - | This response is given if data is available for reading. Checking IS_CONNECTED beforehand with desired sensor type advised. Otherwise, might be returning data of some other sensor Response = | START_READ_Y | nBytes |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-556345524%2FClasslikes%2F492899073" anchor-label="STOP_READ_N" id="-556345524%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-s-t-o-p_-r-e-a-d_-n/index.html">STOP_READ_N</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-556345524%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-s-t-o-p_-r-e-a-d_-n/index.html">STOP_READ_N</a><span class="token punctuation">(</span>6.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | STOP_READ | response informs that reading paused ( ideally, this will almost always execute ) Response = | STOP_READ_N | - - - - |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="716896002%2FClasslikes%2F492899073" anchor-label="DISCONNECT_SENSOR_N" id="716896002%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-d-i-s-c-o-n-n-e-c-t_-s-e-n-s-o-r_-n/index.html">DISCONNECT_SENSOR_N</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="716896002%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-d-i-s-c-o-n-n-e-c-t_-s-e-n-s-o-r_-n/index.html">DISCONNECT_SENSOR_N</a><span class="token punctuation">(</span>8.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = | DISCONNECT_SENSOR | if sensor exists and is connected, response is positive, otherwise negative Response = | DISCONNECT_SENSOR_N | sensor id |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="438807186%2FClasslikes%2F492899073" anchor-label="READING_SENSOR_DATA" id="438807186%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-r-e-a-d-i-n-g_-s-e-n-s-o-r_-d-a-t-a/index.html">READING_SENSOR_DATA</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="438807186%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-r-e-a-d-i-n-g_-s-e-n-s-o-r_-d-a-t-a/index.html">READING_SENSOR_DATA</a><span class="token punctuation">(</span>255.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = none -> this response sent only while data is being read from the sensor Informs that reading is in progress, and sends read data along with it. # of bytes read / written depends on sensor's data type, or configuration Response = | READING_SENSOR_DATA | x, x, x, x, ... , n^th 'x' byte |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1924764455%2FClasslikes%2F492899073" anchor-label="INVALID_REQUEST" id="1924764455%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-i-n-v-a-l-i-d_-r-e-q-u-e-s-t/index.html">INVALID_REQUEST</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1924764455%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><a href="-i-n-v-a-l-i-d_-r-e-q-u-e-s-t/index.html">INVALID_REQUEST</a><span class="token punctuation">(</span>128.toByte()<span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Request = 'ANY' Informs that one sending the request is not following framework's conventions and sends the rejected request type alongside with the response. Response = | INVALID_REQUEST | REQUEST(1 byte) - - - |</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Types</h2>
+              <div class="table" data-togglable="Types"><a data-name="1014849954%2FClasslikes%2F492899073" anchor-label="Companion" id="1014849954%2FClasslikes%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1014849954%2FClasslikes%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="-1592668406%2FProperties%2F492899073" anchor-label="value" id="-1592668406%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="value.html">value</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1592668406%2FProperties%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><a data-name="-1592668406%2FProperties%2F492899073" anchor-label="value" id="-1592668406%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Byte///PointingToDeclaration/">Byte</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Inherited properties</h2>
+              <div class="table" data-togglable="Inherited properties"><a data-name="-372974862%2FProperties%2F492899073" anchor-label="name" id="-372974862%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../../com.example.externalsensorframework.sensor_framework.sensors/-sensor-type/-s-e-n-s-o-r_-c-u-s-t-o-m_-d-i-g-i-t-a-l/index.html#-372974862%2FProperties%2F492899073">name</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Inherited properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><a data-name="-372974862%2FProperties%2F492899073" anchor-label="name" id="-372974862%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../../com.example.externalsensorframework.sensor_framework.sensors/-sensor-type/-s-e-n-s-o-r_-c-u-s-t-o-m_-d-i-g-i-t-a-l/index.html#-372974862%2FProperties%2F492899073">name</a><span class="token operator">: </span><span data-unresolved-link="kotlin/String///PointingToDeclaration/">String</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-739389684%2FProperties%2F492899073" anchor-label="ordinal" id="-739389684%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+                <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../../com.example.externalsensorframework.sensor_framework.sensors/-sensor-type/-s-e-n-s-o-r_-c-u-s-t-o-m_-d-i-g-i-t-a-l/index.html#-739389684%2FProperties%2F492899073">ordinal</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F492899073"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Inherited properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":app:dokkaHtml/release"><a data-name="-739389684%2FProperties%2F492899073" anchor-label="ordinal" id="-739389684%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../../com.example.externalsensorframework.sensor_framework.sensors/-sensor-type/-s-e-n-s-o-r_-c-u-s-t-o-m_-d-i-g-i-t-a-l/index.html#-739389684%2FProperties%2F492899073">ordinal</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
