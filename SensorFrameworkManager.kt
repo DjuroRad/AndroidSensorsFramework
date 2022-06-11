@@ -1,5 +1,6 @@
 package com.example.externalsensorframework.sensor_framework
 
+import android.os.Handler
 import com.example.externalsensorframework.sensor_framework.client.ClientCommunicationThread
 import com.example.externalsensorframework.sensor_framework.sensors.SensorObserver
 import java.io.InputStream
@@ -18,14 +19,19 @@ import java.io.OutputStream
  * */
 class SensorFrameworkManager(sensorObserver: SensorObserver,
                              serverInputStream: InputStream,
-                             clientOutputStream: OutputStream
+                             clientOutputStream: OutputStream,
 ) {
 
     private var clientCommunicationThread:ClientCommunicationThread? = null;
-
+    private var clientCommunicationThreadHandler: Handler? = null;
     init {
         //initialize necessary response/request threads
         clientCommunicationThread = ClientCommunicationThread(sensorObserver, serverInputStream, clientOutputStream);
+        clientCommunicationThread?.start();
+        clientCommunicationThread?.let {
+            val handler = Handler(it.looper)
+            it.handler = handler
+        }
     }
 
     /**

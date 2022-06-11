@@ -3,7 +3,6 @@ package com.example.externalsensorframework.sensor_framework.client
 import android.os.Handler
 import android.os.HandlerThread
 import android.util.Log
-import com.example.externalsensorframework.getThreadHandler
 import com.example.externalsensorframework.sensor_framework.sensors.SensorObserver
 import com.example.externalsensorframework.sensor_framework.communication_protocol.request.Request
 import com.example.externalsensorframework.sensor_framework.communication_protocol.request.RequestPackage
@@ -16,7 +15,7 @@ import java.io.OutputStream
 import java.math.BigInteger
 import java.nio.ByteBuffer
 
-/**
+/*
  * Processing new requests:
  *
  * Case 1: reading not started.
@@ -40,7 +39,7 @@ class ClientCommunicationThread: HandlerThread {
 
     private val TAG = "ClientCommunicationThrd"
     private var dataTransferThread: DataTransferThread? = null;
-    private var handler: Handler? = null;
+    var handler: Handler? = null;
     @Volatile private var isReadingData: Boolean = false;
 
     private var clientOutputStream: OutputStream? = null;
@@ -59,7 +58,6 @@ class ClientCommunicationThread: HandlerThread {
         serverInputStream: InputStream,
         clientOutputStream: OutputStream
     ) : super("ClientCommunicationThread"){
-        handler = this.getThreadHandler()
         dataTransferThread = DataTransferThread(serverInputStream = serverInputStream, sensorObserver,availableSensors);
         this.clientOutputStream = clientOutputStream
         this.serverInputStream = serverInputStream
@@ -67,7 +65,7 @@ class ClientCommunicationThread: HandlerThread {
     }
 
 
-    /**
+    /*
      * sends CONNECT request
      * @see Request
      * */
@@ -96,22 +94,22 @@ class ClientCommunicationThread: HandlerThread {
 
     fun isConnected(sensorID: Int) = sendMessage( RequestPackage(Request.IS_CONNECTED, sensorID.toByteArray()) )
 
-    /**
+    /*
      * used for framework manager
      * */
     fun sendStartReadRequest() = sendMessage( RequestPackage(Request.START_READ) )
 
-    /**
+    /*
      * stops reading data from the remote device
      * */
     fun sendStopReadRequest() = sendMessage( RequestPackage(Request.STOP_READ) )
-    /**
+    /*
      * used for framework manager
      * */
     fun disconnect(){
         sendMessage( RequestPackage(Request.DISCONNECT) )
     }
-    /**
+    /*
      * used to ask for some request from server,
      * wait for the response and
      * update the communication thread if necessary
@@ -126,17 +124,8 @@ class ClientCommunicationThread: HandlerThread {
                 clientOutputStream?.close()
             }
         }
-//        handler?.post(object : Runnable{
-//            override fun run() {
-//                this.currentRequest = requestPackage
-//                sendRequestToServer(requestPackage)
-//                if( requestPackage.requestType == Request.DISCONNECT )
-//                    this.quit()
-//            }
-//        })
     }
-
-    /**
+    /*
      * for each request, this same method is executed
      * it implements cases described header of the class
      * @param requestPackage request sent to server
@@ -233,7 +222,7 @@ class ClientCommunicationThread: HandlerThread {
         }
     }
 
-    /**
+    /*
      * called after CONNECT_Y response
      * Response contains additional data on number of sensors and with their types and ids
      * */
@@ -261,7 +250,7 @@ class ClientCommunicationThread: HandlerThread {
         }
     }
 
-    /**
+    /*
      * called only after START_READ_Y response which returns number of bytes that the sample will be sending
      * */
     private fun configureReadingLength() {
@@ -296,7 +285,7 @@ class ClientCommunicationThread: HandlerThread {
         }
     }
 
-    /**
+    /*
      * if sensor connected we can
      * */
     private fun connectSensor() {
@@ -334,48 +323,9 @@ class ClientCommunicationThread: HandlerThread {
         }
     }
 
-
-
-    //reads sensor entities one by one
-//    private fun configureOnConnect() {
-//        val sizeListBytes: ByteArray = currentResponse.responseBody
-//        val sizeList: Int = BigInteger(sizeListBytes).toInt()
-//
-//        for( i in 0 until sizeList ){
-//            serverInputStream?.let {
-//                val newSensorEntry: SensorEntry  = getSensorEntry(it)
-//                availableSensors.add(newSensorEntry);
-//            }
-//        }
-//    }
-
-    /**
+    /*
      * function assumes next `SensorEntry.SENSOR_ENTRY_BYTE_LENGTH` belongs to sensor entry
      * */
-//    private fun getSensorEntry(serverInputStream: InputStream): ClientCommunicationThread.SensorEntry {
-//        try{
-//            val sensorTypeByte: Int = serverInputStream.read();
-//
-//            var sensorIdBytes = ByteArray(ID_LENGTH_BYTES)
-//            var sensorDataLengthBytes = ByteArray(SAMPLE_LENGTH_BYTES)
-//
-//            serverInputStream.read(sensorIdBytes, 0, ID_LENGTH_BYTES);
-//            serverInputStream.read(sensorDataLengthBytes, 0, SAMPLE_LENGTH_BYTES);
-//
-//            val sensorType:SensorType? = SensorType.getSensorTypeFromByte(sensorTypeByte.toByte())
-//            val sensorID:Int = BigInteger(sensorIdBytes).toInt()
-//            val sensorDataLength:Int = BigInteger(sensorDataLengthBytes).toInt()
-//
-//            if( sensorTypeByte == -1 )
-//                throw IOException("Sensor type returned as -1 => error reading sensory type during initial CONNECT handshake request\n");
-//
-//            return SensorEntry(sensorType, sensorID, sensorDataLength)
-//
-//        }catch (ioe: IOException) {
-//            ioe.printStackTrace()
-//        }
-//        throw IOException("@:Error reading sensory type during initial CONNECT handshake request\n")
-//    }
 
 
     private fun responseClientError(information: String) {
@@ -393,7 +343,7 @@ class ClientCommunicationThread: HandlerThread {
         Log.e(TAG, "syncError: Response doesn't corresponse to sent request -> ${currentRequest?.requestType?.name} | ${currentResponse?.responseType?.name}" )
     }
 
-    /**
+    /*
      * class used in order to store received sensor id alongside with its sensor id
      * @param sensorID sensor's id
      * @param sensorType sensor's type

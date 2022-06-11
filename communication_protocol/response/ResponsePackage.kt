@@ -2,7 +2,6 @@ package com.example.externalsensorframework.sensor_framework.communication_proto
 
 import java.io.IOException
 import java.io.InputStream
-import java.io.OutputStream
 import java.math.BigInteger
 
 class ResponsePackage {
@@ -64,19 +63,4 @@ class ResponsePackage {
         this.responseBody = responseBody
         responseType?.let { it -> setResponseType(it) }
     }
-
-
-    //    fun sendResponse(outputStream: OutputStream) {
-//        try {
-//            val responseInBytes = ByteArray(RESPONSE_BODY_SIZE + RESPONSE_HEADER_SIZE)
-//            responseInBytes[0] = responseTypeByte
-//            for (i in 0 until RESPONSE_BODY_SIZE) responseInBytes[i + 1] =
-//                responseBody[i]
-//            //now write the response
-//            outputStream.write(responseInBytes)
-//            outputStream.flush() //wait for response to reach its destination
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//        }
-//    }
 }

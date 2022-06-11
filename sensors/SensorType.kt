@@ -11,7 +11,7 @@ enum class SensorType(val value: Byte) {
     ORIENTATION_SENSOR(13.toByte()),
     GYROSCOPE_TYPE(14.toByte()),
     PRESSURE_SENSOR_DIGITAL(49.toByte()),
-    SENSOR_CUSTOM_ANALOG(255.toByte()),
+    SENSOR_CUSTOM_ANALOG(250.toByte()),
     SENSOR_CUSTOM_DIGITAL(254.toByte());
 
     fun dataByteSize(): Int {
@@ -44,7 +44,14 @@ enum class SensorType(val value: Byte) {
         fun getSensorTypeFromByte(requestAsByte: Byte): SensorType? {
             if (requestAsByte == LIGHT_SENSOR.value) return LIGHT_SENSOR
             if (requestAsByte == PRESSURE_SENSOR.value) return PRESSURE_SENSOR
-            if (requestAsByte == PRESSURE_SENSOR_DIGITAL.value) return PRESSURE_SENSOR_DIGITAL
+            if (requestAsByte == PRESSURE_SENSOR_DIGITAL.value) return PRESSURE_SENSOR
+            if (requestAsByte == SENSOR_CUSTOM_ANALOG.value) return SENSOR_CUSTOM_ANALOG
+            if (requestAsByte == SENSOR_CUSTOM_DIGITAL.value) return SENSOR_CUSTOM_DIGITAL
+            if (requestAsByte == PROXIMITY_SENSOR.value) return PROXIMITY_SENSOR
+            if (requestAsByte == TEMPERATURE_SENSOR.value) return TEMPERATURE_SENSOR
+            if (requestAsByte == RELATIVE_HUMIDITY_SENSOR.value) return RELATIVE_HUMIDITY_SENSOR
+            if (requestAsByte == ORIENTATION_SENSOR.value) return ORIENTATION_SENSOR
+            if (requestAsByte == GYROSCOPE_TYPE.value) return GYROSCOPE_TYPE
             return if (requestAsByte == ACCELEROMETER.value) ACCELEROMETER else null
         }
     }

@@ -1,5 +1,6 @@
 package com.example.externalsensorframework.sensor_framework.client
 
+import android.os.Handler
 import android.util.Log
 import com.example.externalsensorframework.sensor_framework.sensors.SensorObserver
 import com.example.externalsensorframework.sensor_framework.communication_protocol.response.Response
@@ -9,6 +10,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.math.BigInteger
 
+
 class DataTransferThread(val serverInputStream: InputStream, val sensorObserver: SensorObserver, val availableSensors: List<ClientCommunicationThread.SensorEntry>): Thread() {
 
     private val TAG = "DataTransferThread"
@@ -16,7 +18,7 @@ class DataTransferThread(val serverInputStream: InputStream, val sensorObserver:
     private var currentResponse: ResponsePackage? = ResponsePackage()//alongside with the data, each time a response is received from the server
     private var nBytes: Int = -1;//represents n bytes for current sensor, on each process response this value is updated to the current sensor's id
     private var currentSensorID: Int = -1;//when started it is supposed to continuously read data from the device driver, in nBytes chunks
-    /**
+    /*
      * after each reading ( response is checked (if READING_DATA_ERROR occurs, reading stops) )
      * -> calling thread joins it? but than requests are impossible...
      *
@@ -55,7 +57,7 @@ class DataTransferThread(val serverInputStream: InputStream, val sensorObserver:
         this.nBytes = -1;
     }
 
-    /**
+    /*
      * all incoming data comes alongside with response packages
      * response is form of
      * READING_SENSOR_DATA | ID | DATA      - DATA is either raw or in some other form depending on device driver implementation
@@ -90,7 +92,7 @@ class DataTransferThread(val serverInputStream: InputStream, val sensorObserver:
 
     fun stopReading(){this.readingRawData = false}
 
-    /** null indicates that sensor type is invalid */
+    /* null indicates that sensor type is invalid */
     private fun sensorTypeFromID(sensorID: Int): SensorType? {
 
         for( sensor in availableSensors ) {
