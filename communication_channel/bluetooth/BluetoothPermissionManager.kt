@@ -19,11 +19,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.MutableLiveData
 
-
-
-//write isEnabled() - checks if bluetooth is enabled
-//write enableBluetoothRequest() - also returns if it is enabled or not
-
 /**
  * requires bluetooth permission to be enabled
  * @param BluetoothPermissionManager is a singleton variable that manages permission for bluetooth communication channel required in order to establish communication through bluetooth.
@@ -43,7 +38,6 @@ object BluetoothPermissionManager {
     private val boundedDevices: HashMap<String, String> = HashMap()
     private val boundedDevicesList: MutableList<BluetoothDevice> = mutableListOf()
 
-//    val boundedBluetoothDevices: MutableLiveData<HashMap<String,String>> = MutableLiveData(HashMap())
     fun initBluetoothPermissionMangager(context: Context, appCompatActivity: AppCompatActivity){
         manageBluetooth(context, appCompatActivity)
     }
@@ -102,8 +96,6 @@ object BluetoothPermissionManager {
                 ActivityResultContracts.StartActivityForResult()) {
 
                 if(it.resultCode == Activity.RESULT_OK) {
-//                    if( isLocationEnabled(activity) == false)
-//                        enableLocation()
                     systemServiceActionBluetooth.onEnabled()
                 }
                 else
@@ -167,12 +159,9 @@ object BluetoothPermissionManager {
                 activity.registerForActivityResult(
                     ActivityResultContracts.StartActivityForResult()) {
 
-                    if(it.resultCode == Activity.RESULT_OK){
-                        //bluetooth granted here
-//                        Log.d(TAG, "registerForActivityResult -> bluetooth enabled")
+                    if(it.resultCode == Activity.RESULT_OK){//bluetooth granted here
                         bluetoothAction.onEnabled()
                     }else{
-//                        Log.w(TAG, "manageBluetooth: Bluetooth not enabled", )
                         bluetoothAction.onDisabled()
                     }
                 }
@@ -223,8 +212,6 @@ object BluetoothPermissionManager {
             //After making sure device supports bluetooth
             //check now if bluetooth is enabled and if it isn't request enabling it using reference to AppCompatActivity we provided
             if ( ! bluetoothAdapter!!.isEnabled ) {
-//                if( !context.hasPermission(Manifest.permission.BLUETOOTH_CONNECT) ) {
-    // doesn't exist in sdk 30
                 if( !context.hasPermission(Manifest.permission.BLUETOOTH) ) {
 
                     val mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
