@@ -2,6 +2,7 @@ package com.example.externalsensorframework.sensor_framework.sensors
 
 import com.example.externalsensorframework.sensor_framework.client.ClientCommunicationThread
 import com.example.externalsensorframework.sensor_framework.communication_protocol.response.Response
+import java.nio.ByteBuffer
 
 interface SensorObserver {
 
@@ -64,12 +65,70 @@ interface SensorObserver {
      * */
     fun onConfigured(sensorID: Int, configured: Boolean)
 
+    /**
+     * Data class used to provide get data from device driver when reading
+     * */
     public class SensorData(
-        val value: Number, val isDigital: Boolean,
-        val isAnalog: Boolean,
-        val rawData: ByteArray, val sensorType: SensorType?,
+        val value: Number,//sometimes sent, delete maybe - formatted is enough, its work depends on sensor so yes probably just remove it
+        val formattedData: String,
+        val rawData: ByteArray,
+        val sensorType: SensorType?,
         val sensorID: Int
-    ){}
+    )
+
+    data class SensorConfiguration(
+        val sampleRate: Int,
+        val sensorPrecision: SensorPrecision,
+        val formatted: Boolean){
+
+        fun toByteArray(): ByteArray{
+
+            val sampleRateBytes = ByteBuffer.allocate(4).putInt(sampleRate).array()
+            val sensorPrecisionBytes = sensorPrecision.toByteArray()
+            val formattedByte = if( formatted ) 1.toByte() else 0.toByte()
+
+            val n_bytes = sampleRateBytes.size + sensorPrecisionBytes.size + 1
+            val byteArray: ByteArray = ByteArray(n_bytes);
+
+            for( i in 0 until sampleRateBytes.size )
+                byteArray[i] = sampleRateBytes[i]
+
+            for( i in sampleRateBytes.size until (sampleRateBytes.size + sensorPrecisionBytes.size) )
+                byteArray[i] = sensorPrecisionBytes[i - sampleRateBytes.size]
+
+            byteArray[sampleRateBytes.size + sensorPrecisionBytes.size] = formattedByte
+
+            return byteArray
+        }
+    }
+
+    data class SensorPrecision(
+        val precision: PRECISION = PRECISION.PRECISE,
+        val difference: Double = 0.0,
+    ){
+        fun toByteArray(): ByteArray{
+            val differenceBytes: ByteArray = ByteBuffer.allocate(8).putDouble(difference).array()
+            val precisionByte = PRECISION.toByte(precision)
+
+            val sensorPrecisionBytes: ByteArray = ByteArray(differenceBytes.size + 1);
+
+            val n_bytes = differenceBytes.size + 1;
+            sensorPrecisionBytes[0] = precisionByte;
+            for( i in 1 until n_bytes )
+                sensorPrecisionBytes[i] = differenceBytes[i-1];
+
+            return sensorPrecisionBytes
+        }
+    }
+
+    enum class PRECISION{
+        PRECISE,
+        IMPRECISE_OPTIMIZED;
+
+        companion object {
+            fun toByte(precision: PRECISION): Byte = if(precision==PRECISE) 0.toByte() else 1.toByte();
+        }
+    }
 
     class SensorError(val errorMessage: String, private val responseType: Response){
 

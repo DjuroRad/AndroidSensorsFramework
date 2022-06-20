@@ -136,6 +136,11 @@ enum class Response(val value: Byte) {
     READING_SENSOR_DATA(255.toByte()),
 
     /**
+     * same as [READING_SENSOR_DATA], though additionally it also reads the formatted data!
+     */
+    READING_SENSOR_DATA_FORMATTED(254.toByte()),
+
+    /**
      * Request = 'ANY'
      * Informs that one sending the request is not following framework's conventions and sends the rejected request type alongside with the response.
      * Response = | INVALID_REQUEST | REQUEST(1 byte) - - - |
@@ -155,6 +160,7 @@ enum class Response(val value: Byte) {
             if (requestAsByte == Response.START_READ_N.value) return Response.START_READ_N
             if (requestAsByte == Response.STOP_READ_N.value) return Response.STOP_READ_N
             if (requestAsByte == Response.READING_SENSOR_DATA.value) return Response.READING_SENSOR_DATA
+            if (requestAsByte == Response.READING_SENSOR_DATA_FORMATTED.value) return Response.READING_SENSOR_DATA_FORMATTED
             if (requestAsByte == Response.CONFIGURE_Y.value) return Response.CONFIGURE_Y
             if (requestAsByte == Response.CONFIGURE_N.value) return Response.CONFIGURE_N
             if (requestAsByte == Response.CONNECT_Y.value) return Response.CONNECT_Y

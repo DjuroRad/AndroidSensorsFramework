@@ -16,10 +16,7 @@ class ResponsePackage {
         this.responseBody = ByteArray( RESPONSE_BODY_SIZE)
         this.responseType = responseType
     }
-
     constructor(): this(null)
-
-
 
     fun bodyAsInt(): Int{
         return BigInteger(responseBody).toInt()
@@ -27,14 +24,14 @@ class ResponsePackage {
 
     fun getResponsePackage(inputStream: InputStream) {
         try {
-            val responseTypeInt: Int = inputStream.read()
+            val responseTypeInt: Int = inputStream.read()//read first byte of the response and check if valid
             if (responseTypeInt == -1)
                 throw IOException("ResponseType reading: Data read from input stream is -1")
             else {
-                this.responseTypeByte = responseTypeInt.toByte()
+                this.responseTypeByte = responseTypeInt.toByte()//get response type
                 this.responseType = Response.getResponseFromByte(responseTypeByte)
-                val responseBodyLength: Int = inputStream.read(responseBody, 0, RESPONSE_BODY_SIZE)
-                if (responseBodyLength != 4) throw IOException("ResponseType reading: Data read from input stream is -1")
+                val responseBodyLength: Int = inputStream.read(responseBody, 0, RESPONSE_BODY_SIZE)//get response body
+                if (responseBodyLength != 4) throw IOException("ResponseBody reading: Couldn't read $RESPONSE_BODY_SIZE which is number of bytes required for response's body!")
             }
         } catch (e: IOException) {
             e.printStackTrace()
