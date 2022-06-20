@@ -25,8 +25,8 @@ class RequestPackage {
             requestInBytes[0] = requestTypeByte
             for (i in 0 until RequestPackage.REQUEST_BODY_SIZE) requestInBytes[i + 1] =
                 requestBody[i]
-            //now write the request
-            outputStream.write(requestInBytes)
+
+            outputStream.write(requestInBytes)//now write the request
             outputStream.flush() //wait for request to reach its destination
         } catch (e: IOException) {
             e.printStackTrace()

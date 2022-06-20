@@ -21,9 +21,8 @@ class SensorFrameworkManager(sensorObserver: SensorObserver,
                              serverInputStream: InputStream,
                              clientOutputStream: OutputStream,
 ) {
-
     private var clientCommunicationThread:ClientCommunicationThread? = null;
-    private var clientCommunicationThreadHandler: Handler? = null;
+
     init {
         //initialize necessary response/request threads
         clientCommunicationThread = ClientCommunicationThread(sensorObserver, serverInputStream, clientOutputStream);
@@ -48,7 +47,7 @@ class SensorFrameworkManager(sensorObserver: SensorObserver,
     /**
      * Configure sample rate of specific sensor
      * @param sensorID id of sensor whose sample rate is to be changed, if id is -1, all the sensors will be se
-     * @param sensorConfiguration new sample rate in milliseconds
+     * @param sensorConfiguration use it to set sample rate, precision and formatting desired
      * @return value returned through [SensorObserver.onConfigured]
      * @see [SensorObserver.SensorConfiguration]
      */
@@ -119,7 +118,6 @@ class SensorFrameworkManager(sensorObserver: SensorObserver,
      */
     fun disconnect() {
         clientCommunicationThread?.disconnect();
-//        clientCommunicationThread?.quit()
         clientCommunicationThread = null;
     }
 

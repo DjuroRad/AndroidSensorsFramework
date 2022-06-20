@@ -67,6 +67,11 @@ interface SensorObserver {
 
     /**
      * Data class used to provide get data from device driver when reading
+     * @param formattedData data sent by driver developer as JSONString
+     * @param rawData raw data of the sensor
+     * @param sensorID id of the sensor
+     * @param sensorType sensor's type
+     * @see SensorType
      * */
     public class SensorData(
         val value: Number,//sometimes sent, delete maybe - formatted is enough, its work depends on sensor so yes probably just remove it
@@ -76,6 +81,12 @@ interface SensorObserver {
         val sensorID: Int
     )
 
+    /**
+     * @param sampleRate used for setting sample rate of the given sensor
+     * @param formatted set to true in order to get data formatted as JSONString
+     * @param sensorPrecision use in order to set the precision of the sensor. This allows optimization and getting values only on sample intervals that indicate specified change
+     * @see [SensorPrecision]
+     * */
     data class SensorConfiguration(
         val sampleRate: Int,
         val sensorPrecision: SensorPrecision,
@@ -102,6 +113,13 @@ interface SensorObserver {
         }
     }
 
+    /**
+     * class is used in order to specify
+     *
+     * @param precision specifies precision of the sensor allowing for optimization
+     * @param difference specifies how precise reading is supposed to be. Example: last data reading was 200, difference of 30 means that next value can't be between 170 and 230 (200+-30)
+     * @see PRECISION
+     * */
     data class SensorPrecision(
         val precision: PRECISION = PRECISION.PRECISE,
         val difference: Double = 0.0,
@@ -121,6 +139,10 @@ interface SensorObserver {
         }
     }
 
+    /**
+     * @param PRECISE each data sample will be taken into consideration
+     * @param IMPRECISE_OPTIMIZED only some data samples taken into consideration
+     * */
     enum class PRECISION{
         PRECISE,
         IMPRECISE_OPTIMIZED;
