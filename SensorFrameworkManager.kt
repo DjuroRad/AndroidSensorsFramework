@@ -43,22 +43,16 @@ class SensorFrameworkManager(sensorObserver: SensorObserver,
      * @return value returned through [SensorObserver.onConnected]
      * @see SensorObserver.onConnected upon initial handshake, data of available sensors can be accessed by implementing this interface
      */
-    fun connect(generalSampleRate: Int = 1000) = clientCommunicationThread?.connect(generalSampleRate)
+    fun connect(generalSampleRate: Int= 2000) = clientCommunicationThread?.connect(generalSampleRate)
 
     /**
      * Configure sample rate of specific sensor
      * @param sensorID id of sensor whose sample rate is to be changed, if id is -1, all the sensors will be se
-     * @param sampleRate new sample rate in milliseconds
+     * @param sensorConfiguration new sample rate in milliseconds
      * @return value returned through [SensorObserver.onConfigured]
+     * @see [SensorObserver.SensorConfiguration]
      */
-    fun configure(sensorID: Int, sampleRate: Int) = clientCommunicationThread?.configureSensor(sensorID, sampleRate)
-
-    /**
-     * Configures general sample rate for all the sensors, calls [configure] with id of -1
-     * @param sampleRate new sample rate in milliseconds
-     * @return value returned through [SensorObserver.onConfigured]
-     */
-    fun configureGeneralSampleRate(sampleRate: Int) = clientCommunicationThread?.configureSensor(-1, sampleRate)
+    fun configure(sensorID: Int, sensorConfiguration: SensorObserver.SensorConfiguration) = clientCommunicationThread?.configureSensor(sensorID, sensorConfiguration)
 
     /**
      * Checks if sensor is connected
@@ -125,7 +119,7 @@ class SensorFrameworkManager(sensorObserver: SensorObserver,
      */
     fun disconnect() {
         clientCommunicationThread?.disconnect();
-        clientCommunicationThread?.quit()
+//        clientCommunicationThread?.quit()
         clientCommunicationThread = null;
     }
 

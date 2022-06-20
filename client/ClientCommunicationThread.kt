@@ -48,9 +48,9 @@ class ClientCommunicationThread: HandlerThread {
     private val currentResponse: ResponsePackage = ResponsePackage();
     private var currentRequest: RequestPackage? = null;
     private var sensorObserver: SensorObserver? = null;
+    private var initialHandshake: Boolean = false;
 
     private var extraDataAsByteArray: ByteArray? = null;
-    private var connectedToDeviceDriver: Boolean = false;
     private var availableSensors: MutableList<SensorEntry> = mutableListOf()
 
     constructor (
@@ -69,14 +69,15 @@ class ClientCommunicationThread: HandlerThread {
      * sends CONNECT request
      * @see Request
      * */
-    fun connect(generalSampleRate: Int) =
-        sendMessage(RequestPackage(Request.CONNECT, generalSampleRate.toByteArray()))
+    fun connect(generalSampleRate: Int) {
+        if( !initialHandshake )//if connection not previously established, establish it, otherwise do nothing!
+            sendMessage(RequestPackage(Request.CONNECT, generalSampleRate.toByteArray()))
+    }
 
-    fun configureSensor(sensorID: Int, sampleRate: Int){
+    fun configureSensor(sensorID: Int, sensorConfiguration: SensorObserver.SensorConfiguration){
         val requestBodyByte: ByteArray = sensorID.toByteArray()//send sensor id
         val requestPackage: RequestPackage = RequestPackage(Request.CONFIGURE, requestBodyByte)//send request header
-        extraDataAsByteArray = sampleRate.toByteArray()//send extra data
-
+        extraDataAsByteArray = sensorConfiguration.toByteArray()//setup extra data, will be sent in sendMessage function separately after the request itself is sent
         sendMessage(requestPackage)
     }
 
@@ -108,6 +109,8 @@ class ClientCommunicationThread: HandlerThread {
      * */
     fun disconnect(){
         sendMessage( RequestPackage(Request.DISCONNECT) )
+        Log.d(TAG, "disconnect: disconnect request sent")
+
     }
     /*
      * used to ask for some request from server,
@@ -118,10 +121,10 @@ class ClientCommunicationThread: HandlerThread {
         handler?.post{
             this.currentRequest = requestPackage
             sendRequestToServer(requestPackage)
-            if( requestPackage.requestType == Request.DISCONNECT ) {
-                this.quit()
+            if( requestPackage.requestType == Request.DISCONNECT){
                 serverInputStream?.close()
                 clientOutputStream?.close()
+                this.quit()
             }
         }
     }
@@ -212,6 +215,7 @@ class ClientCommunicationThread: HandlerThread {
                 //data sent as n sensors and their entries
                 setUpAvailableSensors();
                 responseOK("CONNECT_Y - RESPONSE OK")
+                this.initialHandshake = true;
                 sensorObserver?.onConnected(availableSensors)//trigger
             }
             Response.CONNECT_N -> {
@@ -248,14 +252,6 @@ class ClientCommunicationThread: HandlerThread {
             Response.START_READ_N -> responseClientError( "If it returns this, you are basically screwed, though shouldn't as it just suspends the thread" )
             else -> syncError()
         }
-    }
-
-    /*
-     * called only after START_READ_Y response which returns number of bytes that the sample will be sending
-     * */
-    private fun configureReadingLength() {
-        var readLengthSize = currentResponse?.bodyAsInt()
-//        dataTransferThread?.setByteDataLength(readLengthSize!!); //contained withing available sensors sent
     }
 
     private fun stopRead() {//when this happens, data transfer thread should be suspended
@@ -348,10 +344,10 @@ class ClientCommunicationThread: HandlerThread {
      * @param sensorID sensor's id
      * @param sensorType sensor's type
      * */
-    class SensorEntry(var sensorType: SensorType? = null, var sensorID: Int? = null, var dataSampleByteLength: Int? = null) {
+    class SensorEntry(var sensorType: SensorType? = null, var sensorID: Int? = null, var dataSampleByteLength: Int? = null, var minValue: Int? = null, var maxValue: Int? = null) {
 
         companion object{
-            const val SENSOR_ENTRY_BYTE_LENGTH = 9 // 1 + 4 + 4  -  type + id + sample_byte_length
+            const val SENSOR_ENTRY_BYTE_LENGTH = 9 + 4 + 4// 1 + 4 + 4 + 4 + 4 -  type + id + sample_byte_length + minValue + maxValue
             const val SAMPLE_LENGTH_BYTES = 4
             const val ID_LENGTH_BYTES = 4
         }
@@ -369,9 +365,14 @@ class ClientCommunicationThread: HandlerThread {
 
             SensorType.getSensorTypeFromByte( sensorEntryAsBytesArray[0] )?.let { this.sensorType = it }
             val sensorIdAsByteArray = sensorEntryAsBytesArray.copyOfRange(1, 5);//1 inclusive, 5 exclusive
-            val dataSampleByteLengthInBytes = sensorEntryAsBytesArray.copyOfRange(5, SENSOR_ENTRY_BYTE_LENGTH);
+            val dataSampleByteLengthInBytes = sensorEntryAsBytesArray.copyOfRange(5, 9);
+            val minValueBytes = sensorEntryAsBytesArray.copyOfRange(9, 13);
+            val maxValueBytes = sensorEntryAsBytesArray.copyOfRange(13, SENSOR_ENTRY_BYTE_LENGTH);
+
             sensorIdAsByteArray.let { this.sensorID = BigInteger(it).toInt() }
             dataSampleByteLengthInBytes.let{ this.dataSampleByteLength = BigInteger(it).toInt() }
+            minValueBytes.let { this.minValue = BigInteger(it).toInt() }
+            maxValueBytes.let { this.maxValue = BigInteger(it).toInt() }
         }
     }
 
