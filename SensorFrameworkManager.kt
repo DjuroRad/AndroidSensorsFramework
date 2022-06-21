@@ -7,7 +7,7 @@ import java.io.InputStream
 import java.io.OutputStream
 
 /**
- * Class instance provides methods for communication with remote device.
+ * Class instance provides methods for communication with remote device. Instance of this class is required in order to communicate with the device driver. Use its methods in order to request desired data or actions.
  *
  * @param sensorObserver used to get return for each of the methods [SensorFrameworkManager] provides
  * @param serverInputStream remove device's (sensor driver) input stream

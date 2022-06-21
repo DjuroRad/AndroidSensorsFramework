@@ -4,6 +4,9 @@ import com.example.externalsensorframework.sensor_framework.client.ClientCommuni
 import com.example.externalsensorframework.sensor_framework.communication_protocol.response.Response
 import java.nio.ByteBuffer
 
+/**
+ * This interface must be implemented in order to get results from SensorFrameworkManager.
+ * */
 interface SensorObserver {
 
     /**
